@@ -93,4 +93,6 @@ class Student
     
     DB[:conn].execute(sql, student)
   end 
+  
+  def self
 end
