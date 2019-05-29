@@ -10,7 +10,7 @@ class Student
   end
 
   def self.all
-    # remember each row should be a new instance of the Student class,  # retrieve all the rows from the "Students" database
+    # remember each row should be a new instance of the Student class, retrieve all the rows from the "Students" database
     sql = <<-SQL
       SELECT * 
       FROM students
@@ -78,20 +78,20 @@ class Student
     SQL
     
     
-    DB[:conn].execute(sql).map do |row|
+    DB[:conn].execute(sql).map do |row| # study on this topic, don't fully understand why use iteration?
       self.new_from_db(row)
     end
   end 
   
   def self.first_X_students_in_grade_10(student)
-      sql = <<-SQL
+      sql = <<-SQL # Why we using a question mark for LIMIT = ?
       SELECT *
       FROM students 
       WHERE grade = 10
-      LIMIT ?
+      LIMIT ? 
     SQL
     
-    DB[:conn].execute(sql, student)
+    DB[:conn].execute(sql, student) # Why are we using student within the parameters?
   end 
   
   def self.first_student_in_grade_10
@@ -108,10 +108,10 @@ class Student
   end 
   
   def self.all_students_in_grade_X(grade)
-    sql = <<-SQL
+    sql = <<-SQL   # Why we using a question mark for grade = ?
       SELECT *
       FROM students 
-      WHERE grade = ?
+      WHERE grade = ?  
     SQL
     
     DB[:conn].execute(sql, grade)
